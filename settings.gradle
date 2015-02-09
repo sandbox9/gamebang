@@ -1,2 +1,8 @@
-rootProject.name = 'gamebang'
+rootProject.name = 'legostore'
+
+include 'frontend'
+
+include 'backend'
+
+include 'framework'
 
