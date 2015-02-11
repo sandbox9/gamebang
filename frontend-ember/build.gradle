@@ -1,4 +1,4 @@
-apply plugin: 'java'
+apply plugin: 'war'
 
 version = '1.0'
 
@@ -8,5 +8,4 @@ repositories {
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
 }

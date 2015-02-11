@@ -1,6 +1,6 @@
 rootProject.name = 'legostore'
 
-include 'frontend'
+include 'frontend-ember'
 
 include 'backend'
 

@@ -31,7 +31,7 @@
         <h1>상품리스트</h1>
         <section id="content">
             <ul id="productList">
-                    {{#each product in model}}
+                    {{#each product in model.productList}}
                         <li>
                             {{#link-to 'productDetail' product.productId}}
                             {{product.productName}}

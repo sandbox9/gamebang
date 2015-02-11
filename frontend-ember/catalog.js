@@ -1,4 +1,19 @@
 window.App = Ember.Application.create();
+App.ApplicationAdapter = DS.RESTAdapter.extend({
+    host: 'http://localhost:10001',
+    namespace: 'catalog'
+});
+
+App.Theme = DS.Model.extend({
+    screenName: DS.attr('string'),
+    productList: DS.hasMany('productList')
+});
+
+App.ProductList = DS.Model.extend({
+    productId: DS.attr('string'),
+    productName: DS.attr('string'),
+    productPrice: DS.attr('integer')
+});
 
 App.Router.map(function() {
     this.resource('theme', {path: "/theme"});
@@ -16,23 +31,9 @@ App.IndexRoute = Ember.Route.extend({
 
 App.ThemeRoute = Ember.Route.extend({
     model: function() {
-        return [
-            {
-                productId: 'P101',
-                productName: '레고1',
-                productPrice: 1000
-            },
-            {
-                productId: 'P102',
-                productName: '레고2',
-                productPrice: 2000
-            },
-            {
-                productId: 'P103',
-                productName: '레고3',
-                productPrice: 3000
-            }
-        ];
+        //TODO JSON과 데이터 모델 연계
+        //return this.store.find('theme');
+        return Ember.$.getJSON('http://localhost:10001/catalog/theme');
     }
 });
 
@@ -45,3 +46,4 @@ App.ProductDetailRoute = Ember.Route.extend({
         };
     }
 });
+
