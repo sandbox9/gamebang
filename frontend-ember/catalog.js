@@ -1,49 +1,53 @@
-window.App = Ember.Application.create();
-App.ApplicationAdapter = DS.RESTAdapter.extend({
-    host: 'http://localhost:10001',
-    namespace: 'catalog'
-});
+(function(){
+    "use strict";
 
-App.Theme = DS.Model.extend({
-    screenName: DS.attr('string'),
-    productList: DS.hasMany('productList')
-});
+    window.App = Ember.Application.create();
+    App.ApplicationAdapter = DS.RESTAdapter.extend({
+        host: 'http://localhost:10001',
+        namespace: 'catalog'
+    });
 
-App.ProductList = DS.Model.extend({
-    productId: DS.attr('string'),
-    productName: DS.attr('string'),
-    productPrice: DS.attr('integer')
-});
+    App.Theme = DS.Model.extend({
+        screenName: DS.attr('string'),
+        productList: DS.hasMany('productList')
+    });
 
-App.Router.map(function() {
-    this.resource('theme', {path: "/theme"});
-    this.resource('category', {path: "/category"});
-    this.resource('season', {path: "/season"});
-    this.resource('new', {path: "/new"});
-    this.resource('productDetail', {path: "/productDetail/:productId"})
-});
+    App.ProductList = DS.Model.extend({
+        productId: DS.attr('string'),
+        productName: DS.attr('string'),
+        productPrice: DS.attr('integer')
+    });
 
-App.IndexRoute = Ember.Route.extend({
-    redirect: function() {
-        this.transitionTo('theme');
-    }
-});
+    App.Router.map(function() {
+        this.resource('theme', {path: "/theme"});
+        this.resource('category', {path: "/category"});
+        this.resource('season', {path: "/season"});
+        this.resource('new', {path: "/new"});
+        this.resource('productDetail', {path: "/productDetail/:productId"})
+    });
 
-App.ThemeRoute = Ember.Route.extend({
-    model: function() {
-        //TODO JSON과 데이터 모델 연계
-        //return this.store.find('theme');
-        return Ember.$.getJSON('http://localhost:10001/catalog/theme');
-    }
-});
+    App.IndexRoute = Ember.Route.extend({
+        redirect: function() {
+            this.transitionTo('theme');
+        }
+    });
 
-App.ProductDetailRoute = Ember.Route.extend({
-    model: function(params) {
-        return {
-            productId: params.productId,
-            productName: '레고1',
-            productPrice: 1000
-        };
-    }
-});
+    App.ThemeRoute = Ember.Route.extend({
+        model: function() {
+            //TODO JSON과 데이터 모델 연계
+            //return this.store.find('theme');
+            return Ember.$.getJSON('http://localhost:10001/catalog/theme');
+        }
+    });
 
+    App.ProductDetailRoute = Ember.Route.extend({
+        model: function(params) {
+            return {
+                productId: params.productId,
+                productName: '레고1',
+                productPrice: 1000
+            };
+        }
+    });
+
+})();

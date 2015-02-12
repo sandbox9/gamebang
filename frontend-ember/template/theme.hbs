@@ -1,0 +1,17 @@
+<h1>Catalog 페이지입니다.</h1>
+{{partial "nav"}}
+
+<!--TODO 별도 파일로 빼내기 -->
+<h1>상품리스트</h1>
+<section id="content">
+    <ul id="productList">
+        {{#each product in model.productList}}
+        <li>
+            {{#link-to 'productDetail' product.productId}}
+            {{product.productName}}
+            {{/link-to}}
+        </li>
+        {{/each}}
+    </ul>
+    </ul>
+</section>

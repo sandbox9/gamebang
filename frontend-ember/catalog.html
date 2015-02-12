@@ -7,51 +7,6 @@
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
-    <script type="text/x-handlebars" data-template-name="_nav">
-        <nav>
-        <!--TODO 데이터 연결로 바꾸기-->
-        {{#link-to 'theme'}}THEME{{/link-to}}
-        <!--TODO 카테고리는 서브 카테고리 보여주기-->
-        {{#link-to 'category'}}CATEGORY{{/link-to}}
-        {{#link-to 'season'}}SEASON{{/link-to}}
-        {{#link-to 'new'}}NEW{{/link-to}}
-        </nav>
-    </script>
-
-    <script type="text/x-handlebars" data-template-name="category">
-        <h1>Category 페이지입니다.</h1>
-        {{partial "nav"}}
-    </script>
-
-    <script type="text/x-handlebars" data-template-name="theme">
-        <h1>Catalog 페이지입니다.</h1>
-        {{partial "nav"}}
-
-        <!--TODO 별도 파일로 빼내기 -->
-        <h1>상품리스트</h1>
-        <section id="content">
-            <ul id="productList">
-                    {{#each product in model.productList}}
-                        <li>
-                            {{#link-to 'productDetail' product.productId}}
-                            {{product.productName}}
-                            {{/link-to}}
-                        </li>
-                    {{/each}}
-                </ul>
-            </ul>
-        </section>
-    </script>
-
-    <script type="text/x-handlebars" data-template-name="productDetail">
-        <h1>상품상세페이지</h1>
-        <section id="productDetail">
-            <h3>상품ID: {{productId}}</h3>
-            <h3>상품이름: {{productName}}</h3>
-            <h3>상품가격: {{productPrice}}</h3>
-        </section>
-    </script>
-
 
     <!-- Emberjs 기본셑 -->
     <script src="js/jquery-1.11.1.min.js"></script>
@@ -61,6 +16,7 @@
 
     <!-- 개발JS -->
     <script src="catalog.js"></script>
+    <script src="template.js"></script>
 
 </body>
 </html>
