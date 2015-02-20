@@ -2,10 +2,12 @@
     "use strict";
 
     window.App = Ember.Application.create();
+    /* model + REST 일 때 prefix 주기 위해 사용
     App.ApplicationAdapter = DS.RESTAdapter.extend({
         host: 'http://localhost:10001',
         namespace: 'catalog'
     });
+    */
 
     App.Theme = DS.Model.extend({
         screenName: DS.attr('string'),
@@ -41,12 +43,16 @@
     });
 
     App.ProductDetailRoute = Ember.Route.extend({
+        /*
         model: function(params) {
             return {
                 productId: params.productId,
                 productName: '레고1',
                 productPrice: 1000
             };
+        }*/
+        model: function(params) {
+            return Ember.$.getJSON('http://localhost:10001/catalog/product/' + params.productId);
         }
     });
 

@@ -11,7 +11,7 @@
 
     function getTemplate(templateName, url) {
         $.ajax({
-            url: 'http://localhost:63342/legostore/frontend-ember/template/' + url + '.hbs',
+            url: 'http://localhost:63342/legostore/frontend-ember/catalog/template/' + url + '.hbs',
             dataType: 'text',
             success: function (res) {
                 console.log(res);

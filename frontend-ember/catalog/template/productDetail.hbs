@@ -1,0 +1,8 @@
+<h1>상품상세페이지</h1>
+<section id="productDetail">
+    <h3>상품ID: {{productId}}</h3>
+    <h3>상품이름: {{productName}}</h3>
+    <h3>상품가격: {{salePrice}}</h3>
+    <h3>상품 상세 옵션 선택</h3>
+    {{view "select" content=skuList optionValuePath="content.skuId" optionLabelPath="content.displayName"}}
+</section>
