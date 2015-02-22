@@ -6,7 +6,6 @@ import java.io.Serializable;
  * Created by chanwook on 2015. 2. 11..
  */
 public class CatalogProduct implements Serializable {
-    private int id; //화면 진열을 위해 필요한 ID
     private String productId;
     private String productName;
     private long salePrice;
@@ -15,19 +14,10 @@ public class CatalogProduct implements Serializable {
 
     }
 
-    public CatalogProduct(int id, String productId, String productName, long salePrice) {
-        this.id = id;
+    public CatalogProduct(String productId, String productName, long salePrice) {
         this.productId = productId;
         this.productName = productName;
         this.salePrice = salePrice;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getProductId() {

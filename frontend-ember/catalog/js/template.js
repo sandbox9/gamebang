@@ -7,7 +7,7 @@
     getTemplate('nav', 'nav');
     getTemplate('theme', 'theme');
     getTemplate('category', 'category');
-    getTemplate('productDetail', 'productDetail');
+    getTemplate('product', 'product');
 
     function getTemplate(templateName, url) {
         $.ajax({

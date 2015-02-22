@@ -2,22 +2,36 @@
     "use strict";
 
     window.App = Ember.Application.create();
-    /* model + REST 일 때 prefix 주기 위해 사용
+    /* model + REST 일 때 prefix 주기 위해 사용 */
     App.ApplicationAdapter = DS.RESTAdapter.extend({
         host: 'http://localhost:10001',
         namespace: 'catalog'
     });
-    */
 
-    App.Theme = DS.Model.extend({
-        screenName: DS.attr('string'),
-        productList: DS.hasMany('productList')
-    });
-
-    App.ProductList = DS.Model.extend({
+    App.Product = DS.Model.extend({
         productId: DS.attr('string'),
         productName: DS.attr('string'),
-        productPrice: DS.attr('integer')
+        salePrice: DS.attr('number'),
+        skuList: DS.hasMany('skuList')
+    });
+
+    App.SkuList = DS.Model.extend({
+        product: DS.belongsTo('product'),
+        skuId: DS.attr('string'),
+        displayName: DS.attr('string'),
+        addPrice: DS.attr('number'),
+        stock: DS.attr('number')
+    });
+
+    App.ProductSerializer = DS.RESTSerializer.extend(DS.EmbeddedRecordsMixin, {
+        primaryKey: 'productId',
+        attrs: {
+            skuList: {embedded: 'always'}
+        }
+    });
+
+    App.SkuListSerializer = DS.RESTSerializer.extend({
+        primaryKey: 'skuId'
     });
 
     App.Router.map(function() {
@@ -25,7 +39,7 @@
         this.resource('category', {path: "/category"});
         this.resource('season', {path: "/season"});
         this.resource('new', {path: "/new"});
-        this.resource('productDetail', {path: "/productDetail/:productId"})
+        this.resource('product', {path: "/product/:productId"})
     });
 
     App.IndexRoute = Ember.Route.extend({
@@ -42,18 +56,25 @@
         }
     });
 
-    App.ProductDetailRoute = Ember.Route.extend({
-        /*
+    App.ProductRoute = Ember.Route.extend({
         model: function(params) {
-            return {
-                productId: params.productId,
-                productName: '레고1',
-                productPrice: 1000
-            };
-        }*/
-        model: function(params) {
-            return Ember.$.getJSON('http://localhost:10001/catalog/product/' + params.productId);
+            //return Ember.$.getJSON('http://localhost:10001/catalog/product/' + params.productId);
+            var product = this.store.find('product', params.productId);
+            console.log("product: " + product);
+            return product;
+        }
+        ,setupController : function(controller, model){
+            controller.set("model", model);
         }
     });
 
+    App.ProductController = Ember.ObjectController.extend({
+        actions: {
+            addToCart: function(model) {
+                //var model = this.get('model');
+                console.log(">>submit model1: " + model);
+                model.save();
+            }
+        }
+    });
 })();

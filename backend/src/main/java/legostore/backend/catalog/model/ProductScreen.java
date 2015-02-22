@@ -7,9 +7,9 @@ import java.util.List;
 /**
  * Created by chanwook on 2015. 2. 19..
  */
-public class ProductDetailScreen implements Serializable {
+public class ProductScreen implements Serializable {
 
-    private final String productId;
+    private String productId;
 
     private String productName;
 
@@ -17,7 +17,7 @@ public class ProductDetailScreen implements Serializable {
 
     private List<ProductSKU> skuList = new ArrayList<ProductSKU>();
 
-    public ProductDetailScreen(String productId) {
+    public ProductScreen(String productId) {
         this.productId = productId;
     }
 

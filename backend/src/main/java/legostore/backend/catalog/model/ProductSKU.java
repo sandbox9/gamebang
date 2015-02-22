@@ -15,9 +15,6 @@ public class ProductSKU implements Serializable {
 
     private Integer stock;
 
-    public ProductSKU() {
-    }
-
     public ProductSKU(String skuId, String displayName, Integer addPrice, Integer stock) {
         this.skuId = skuId;
         this.displayName = displayName;
