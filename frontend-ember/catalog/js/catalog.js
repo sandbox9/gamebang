@@ -13,6 +13,7 @@
         productName: DS.attr('string'),
         salePrice: DS.attr('number'),
         selectedSku: DS.attr('string'),
+        selectedQuantity: DS.attr('number'),
         skuList: DS.hasMany('skuList')
     });
 
@@ -76,6 +77,7 @@
                 console.log("selected sku: " + model.get('selectedSku'));
                 model.save();
             }
-        }
+        },
+        quantityWithOneToTen: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     });
 })();
