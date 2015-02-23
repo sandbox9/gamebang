@@ -12,6 +12,7 @@
         productId: DS.attr('string'),
         productName: DS.attr('string'),
         salePrice: DS.attr('number'),
+        selectedSku: DS.attr('string'),
         skuList: DS.hasMany('skuList')
     });
 
@@ -71,8 +72,8 @@
     App.ProductController = Ember.ObjectController.extend({
         actions: {
             addToCart: function(model) {
-                //var model = this.get('model');
                 console.log(">>submit model1: " + model);
+                console.log("selected sku: " + model.get('selectedSku'));
                 model.save();
             }
         }

@@ -6,7 +6,11 @@
     <h3>상품가격: {{salePrice}}</h3>
     <h2>상품 상세 옵션 선택</h2>
     <!-- 상품 상세 옵션 선택 -->
-    {{view "select" content=skuList optionValuePath="content.id" optionLabelPath="content.displayName"}} <br />
+    {{view "select"
+        content=skuList
+        value=selectedSku
+        optionValuePath="content.id"
+        optionLabelPath="content.displayName"}} <br />
 
     <!-- 상품 주문 -->
     <!-- 버튼? link-to? a href?? 무엇으로?? -->

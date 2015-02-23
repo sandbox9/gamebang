@@ -4,10 +4,9 @@ import legostore.backend.catalog.model.CatalogProduct;
 import legostore.backend.catalog.model.CatalogScreen;
 import legostore.backend.catalog.model.ProductSKU;
 import legostore.backend.catalog.model.ProductScreen;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,6 +17,8 @@ import java.util.Map;
  */
 @RestController
 public class CatalogApiMockEndpoint {
+    private final Logger logger = LoggerFactory.getLogger(CatalogApiMockEndpoint.class);
+
     @RequestMapping(value = "/catalog/theme", method = RequestMethod.GET)
     public CatalogScreen findTheme() {
         return new CatalogScreen("theme", getProductList());
@@ -33,6 +34,11 @@ public class CatalogApiMockEndpoint {
         Map data = new HashMap();
         data.put("product", s);
         return data;
+    }
+
+    @RequestMapping(value = "/catalog/products/{productId}", method = RequestMethod.PUT)
+    public void addToCart(@PathVariable("productId") String productId, @RequestBody Map model) {
+        logger.info(model.toString());
     }
 
     private void createSKU(ProductScreen s) {
