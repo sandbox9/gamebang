@@ -1,41 +1,6 @@
 (function(){
     "use strict";
 
-    window.App = Ember.Application.create();
-    /* model + REST 일 때 prefix 주기 위해 사용 */
-    App.ApplicationAdapter = DS.RESTAdapter.extend({
-        host: 'http://localhost:10001',
-        namespace: 'catalog'
-    });
-
-    App.Product = DS.Model.extend({
-        productId: DS.attr('string'),
-        productName: DS.attr('string'),
-        salePrice: DS.attr('number'),
-        selectedSku: DS.attr('string'),
-        selectedQuantity: DS.attr('number'),
-        skuList: DS.hasMany('skuList')
-    });
-
-    App.SkuList = DS.Model.extend({
-        product: DS.belongsTo('product'),
-        skuId: DS.attr('string'),
-        displayName: DS.attr('string'),
-        addPrice: DS.attr('number'),
-        stock: DS.attr('number')
-    });
-
-    App.ProductSerializer = DS.RESTSerializer.extend(DS.EmbeddedRecordsMixin, {
-        primaryKey: 'productId',
-        attrs: {
-            skuList: {embedded: 'always'}
-        }
-    });
-
-    App.SkuListSerializer = DS.RESTSerializer.extend({
-        primaryKey: 'skuId'
-    });
-
     App.Router.map(function() {
         this.resource('theme', {path: "/theme"});
         this.resource('category', {path: "/category"});
