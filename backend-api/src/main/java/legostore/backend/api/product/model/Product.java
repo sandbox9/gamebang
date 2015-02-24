@@ -17,10 +17,16 @@ public class Product implements Serializable {
 
     private Integer salePrice;
 
+    private List<ProductImage> imageList = new ArrayList<ProductImage>();
+
     @JsonInclude(value = JsonInclude.Include.NON_EMPTY)
     private List<ProductSKU> skuList = new ArrayList<ProductSKU>();
 
     public Product() {
+    }
+
+    public Product(String productId) {
+        this.productId = productId;
     }
 
     public Product(String productId, String productName, Integer salePrice) {
@@ -29,9 +35,6 @@ public class Product implements Serializable {
         this.salePrice = salePrice;
     }
 
-    public Product(String productId) {
-        this.productId = productId;
-    }
 
     public String getProductId() {
         return productId;
@@ -63,5 +66,18 @@ public class Product implements Serializable {
 
     public void addSku(ProductSKU sku) {
         this.skuList.add(sku);
+    }
+
+    public Product addImage(ProductImage image) {
+        this.imageList.add(image);
+        return this;
+    }
+
+    public List<ProductImage> getImageList() {
+        return imageList;
+    }
+
+    public void setImageList(List<ProductImage> imageList) {
+        this.imageList = imageList;
     }
 }

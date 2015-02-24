@@ -52,8 +52,6 @@
 
     App.ThemeRoute = Ember.Route.extend({
         model: function() {
-            //TODO JSON과 데이터 모델 연계
-            //return this.store.find('theme');
             return Ember.$.getJSON('http://localhost:10001/catalog/theme');
         }
     });

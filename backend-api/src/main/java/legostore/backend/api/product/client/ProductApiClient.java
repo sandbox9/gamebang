@@ -19,6 +19,6 @@ public class ProductApiClient {
     }
 
     public Product getProduct(String productId) {
-        return template.getForObject(SERVER + "products/" + productId, Product.class);
+        return template.getForObject(SERVER + "product/" + productId, Product.class);
     }
 }

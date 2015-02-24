@@ -4,14 +4,18 @@
 <!--TODO 별도 파일로 빼내기 -->
 <h1>상품리스트</h1>
 <section id="content">
-    <ul id="productList">
+    <div id="productList">
         {{#each product in model.productList}}
-        <li>
+        <div>
             {{#link-to 'product' product.productId}}
-            {{product.productName}}
+                <img {{bind-attr src=product.imageList.[0].imageUrl }}
+                     style="height: 420px;" />
             {{/link-to}}
-        </li>
+            {{#link-to 'product' product.productId}}
+                {{product.productName}} <br />
+                {{product.salePrice}} 원
+            {{/link-to}}
+        </div>
         {{/each}}
-    </ul>
-    </ul>
+    </div>
 </section>
