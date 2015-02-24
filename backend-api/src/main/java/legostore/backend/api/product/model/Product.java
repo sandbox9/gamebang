@@ -1,4 +1,6 @@
-package legostore.backend.catalog.model;
+package legostore.backend.api.product.model;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -7,7 +9,7 @@ import java.util.List;
 /**
  * Created by chanwook on 2015. 2. 19..
  */
-public class ProductScreen implements Serializable {
+public class Product implements Serializable {
 
     private String productId;
 
@@ -15,9 +17,19 @@ public class ProductScreen implements Serializable {
 
     private Integer salePrice;
 
+    @JsonInclude(value = JsonInclude.Include.NON_EMPTY)
     private List<ProductSKU> skuList = new ArrayList<ProductSKU>();
 
-    public ProductScreen(String productId) {
+    public Product() {
+    }
+
+    public Product(String productId, String productName, Integer salePrice) {
+        this.productId = productId;
+        this.productName = productName;
+        this.salePrice = salePrice;
+    }
+
+    public Product(String productId) {
         this.productId = productId;
     }
 

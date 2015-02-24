@@ -1,9 +1,7 @@
-package legostore.backend;
+package legostore.backend.api;
 
-import legostore.framework.web.HttpCorsFilter;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
@@ -11,14 +9,9 @@ import org.springframework.context.annotation.ComponentScan;
  */
 @EnableAutoConfiguration
 @ComponentScan
-public class LegoStoreApiApp {
-
-    @Bean
-    public HttpCorsFilter corsFilter() {
-        return new HttpCorsFilter();
-    }
+public class LegoStoreBackendApiApp {
 
     public static void main(String[] args) {
-        SpringApplication.run(LegoStoreApiApp.class, args);
+        SpringApplication.run(LegoStoreBackendApiApp.class, args);
     }
 }

@@ -1,4 +1,4 @@
-package legostore.backend.catalog.model;
+package legostore.backend.api.product.model;
 
 import java.io.Serializable;
 
@@ -14,6 +14,9 @@ public class ProductSKU implements Serializable {
     private Integer addPrice;
 
     private Integer stock;
+
+    public ProductSKU() {
+    }
 
     public ProductSKU(String skuId, String displayName, Integer addPrice, Integer stock) {
         this.skuId = skuId;
