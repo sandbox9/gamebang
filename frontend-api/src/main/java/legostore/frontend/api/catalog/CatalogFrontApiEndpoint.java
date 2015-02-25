@@ -2,13 +2,11 @@ package legostore.frontend.api.catalog;
 
 import legostore.backend.api.product.client.ProductApiClient;
 import legostore.backend.api.product.model.Product;
+import legostore.framework.web.EmberModel;
 import legostore.frontend.api.catalog.model.Catalog;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by chanwook on 2015. 2. 11..
@@ -30,18 +28,20 @@ public class CatalogFrontApiEndpoint {
 
     //TODO Screen 개념과 데이터 모델 개념을 연결해서 생각.. 알고보니 {person:{..}} 식으로 주어야 하더라...-_-;
     @RequestMapping(value = "/catalog/products/{productId}", method = RequestMethod.GET)
-    public Map getProductDetail(@PathVariable("productId") String productId) {
+    public EmberModel getProductDetail(@PathVariable("productId") String productId) {
         Product s = client.getProduct(productId);
-        Map data = new HashMap();
-        data.put("product", s);
-        return data;
+        EmberModel em = new EmberModel();
+        em.put("product", s);
+        return em;
     }
 
     @RequestMapping(value = "/catalog/products/{productId}", method = RequestMethod.PUT)
-    public void addToCart(@PathVariable("productId") String productId, @RequestBody Map model) {
-        logger.info(model.toString());
+    public void addToCart(@PathVariable("productId") String productId,
+                          @RequestBody EmberModel em) {
+        logger.info("Model Map: " + em.toString());
+        Product product = em.get("product", Product.class);
+        logger.info("Product: " + product.toString());
+
         //TODO 개발~
     }
-
-
 }

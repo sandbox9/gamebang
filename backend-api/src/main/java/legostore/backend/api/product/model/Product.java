@@ -80,4 +80,15 @@ public class Product implements Serializable {
     public void setImageList(List<ProductImage> imageList) {
         this.imageList = imageList;
     }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "productId='" + productId + '\'' +
+                ", productName='" + productName + '\'' +
+                ", salePrice=" + salePrice +
+                ", imageList=" + imageList +
+                ", skuList=" + skuList +
+                '}';
+    }
 }
