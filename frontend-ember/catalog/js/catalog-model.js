@@ -7,7 +7,13 @@
         salePrice: DS.attr('number'),
         selectedSku: DS.attr('string'),
         selectedQuantity: DS.attr('number'),
+        imageList: DS.hasMany('productImageList'),
         skuList: DS.hasMany('skuList')
+    });
+
+    App.ProductImageList = DS.Model.extend({
+        imageUrl: DS.attr('string'),
+        displayOrder: DS.attr('number')
     });
 
     App.SkuList = DS.Model.extend({
@@ -21,12 +27,17 @@
     App.ProductSerializer = DS.RESTSerializer.extend(DS.EmbeddedRecordsMixin, {
         primaryKey: 'productId',
         attrs: {
-            skuList: {embedded: 'always'}
+            skuList: {embedded: 'always'},
+            imageList: {embedded: 'always'}
         }
     });
 
     App.SkuListSerializer = DS.RESTSerializer.extend({
         primaryKey: 'skuId'
+    });
+
+    App.ProductImageListSerializer = DS.RESTSerializer.extend({
+        primaryKey: 'displayOrder'
     });
 
 })();

@@ -26,7 +26,6 @@ public class CatalogFrontApiEndpoint {
         return catalog;
     }
 
-    //TODO Screen 개념과 데이터 모델 개념을 연결해서 생각.. 알고보니 {person:{..}} 식으로 주어야 하더라...-_-;
     @RequestMapping(value = "/catalog/products/{productId}", method = RequestMethod.GET)
     public EmberModel getProductDetail(@PathVariable("productId") String productId) {
         Product s = client.getProduct(productId);

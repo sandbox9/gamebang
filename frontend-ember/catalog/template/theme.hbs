@@ -1,15 +1,15 @@
-<h1>Catalog 페이지입니다.</h1>
+<h2>Catalog 페이지입니다.</h2>
 {{partial "nav"}}
 
 <!--TODO 별도 파일로 빼내기 -->
-<h1>상품리스트</h1>
+<h3>상품리스트</h3>
 <section id="content">
     <div id="productList">
         {{#each product in model.productList}}
         <div>
             {{#link-to 'product' product.productId}}
                 <img {{bind-attr src=product.imageList.[0].imageUrl }}
-                     style="height: 420px;" />
+                     style="height: 200px;" />
             {{/link-to}}
             {{#link-to 'product' product.productId}}
                 {{product.productName}} <br />
